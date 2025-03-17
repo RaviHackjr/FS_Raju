@@ -171,7 +171,7 @@ async def start_command(client: Client, message: Message):
 
     [
                     InlineKeyboardButton("𝗔𝗯𝗼𝘂𝘁", callback_data = "about"),
-                    InlineKeyboardButton('𝗖𝗵𝗮𝗻𝗻𝗲𝗹𝘀', url='https://t.me/Ayanokoji_Connect_Bot')
+                    InlineKeyboardButton('𝗖𝗵𝗮𝗻𝗻𝗲𝗹𝘀', url='https://t.me/Jas_Mehra')
 
     ]
             ]
