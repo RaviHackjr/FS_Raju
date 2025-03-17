@@ -43,14 +43,14 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 START_PIC = os.environ.get("START_PIC", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8hSUEVj42wNqleYqT03R2rVQ6HyGz8xMx-Q&s")
 FORCE_PIC = os.environ.get("FORCE_PIC", "https://images6.alphacoders.com/136/thumb-1920-1366627.jpeg")
 
-# Turn this feature on or off using True or False put value inside  ""
+# Turn this feature on or off using True or False put value inside ""
 # TRUE for yes FALSE if no 
 TOKEN = False if os.environ.get('TOKEN', "False") == "True" else False 
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "")
-SHORTLINK_API = os.environ.get("SHORTLINK_API", "")
-VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 43200)) # Add time in seconds
+SHORTLINK_URL = ""  # Shortener feature turned off
+SHORTLINK_API = ""  # Shortener feature turned off
+VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 43200))  # Add time in seconds
 IS_VERIFY = os.environ.get("IS_VERIFY", "False")
-TUT_VID = os.environ.get("TUT_VID","https://t.me/Jas_Mehra")
+TUT_VID = os.environ.get("TUT_VID", "https://t.me/Jas_Mehra")
 
 
 HELP_TXT = "<b><blockquote>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ ᴡᴏʀᴋ ғᴏʀ @Jas_Mehra\n\n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/start : sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ\n├/about : ᴏᴜʀ Iɴғᴏʀᴍᴀᴛɪᴏɴ\n└/help : ʜᴇʟᴘ ʀᴇʟᴀᴛᴇᴅ ʙᴏᴛ\n\n sɪᴍᴘʟʏ ᴄʟɪᴄᴋ ᴏɴ ʟɪɴᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴊᴏɪɴ ʙᴏᴛʜ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ ᴛʜᴀᴛs ɪᴛ.....!\n\n ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ <a href=https://t.me/Jas_Mehra>Jas_Mehra</a></blockquote></b>"
