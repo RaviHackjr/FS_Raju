@@ -5,28 +5,28 @@ from logging.handlers import RotatingFileHandler
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7554602481:AAEeLQMpesEC6ViOzYr7k0MY6BS405pMR4Q")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7566423124:AAEWm6SMbQdV7W9NywaGNRqYnn6TAYRJnOo")
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", "22817133"))
+APP_ID = int(os.environ.get("APP_ID", "27322718"))
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "65b44989de9accc59c64691b308da0f7")
+API_HASH = os.environ.get("API_HASH", "4f6d1b67cf101aea5cf0536885aa1b82")
 #Your db channel Id
-CHANNEL_ID = os.environ.get("CHANNEL_ID", "@NineAnimeBackup")
+CHANNEL_ID = os.environ.get("CHANNEL_ID", "@seishirolog")
 # NAMA OWNER
-OWNER = os.environ.get("OWNER", "DARKXSIDE78")
+OWNER = os.environ.get("OWNER", "Blakite_Ravii")
 #OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", "1136967391"))
 #Port
 PORT = os.environ.get("PORT", "8000")
 #Database
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://Blakite_Ravii:Ravi8962@cluster0.vdv6h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://seishiroatanime:Y3FQIzJbCXMWQc9S@cluster0.ymttr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DB_NAME = os.environ.get("DATABASE_NAME", "AutoAnimeFileBot")
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "@Nine_Anime_Official_Ongoing")
-FORCE_SUB_CHANNEL2 = os.environ.get("FORCE_SUB_CHANNEL2", "@DS_AnimeX")
-FORCE_SUB_CHANNEL3 = os.environ.get("FORCE_SUB_CHANNEL3", "@nineanimeofficial")
-#FORCE_SUB_CHANNEL4 = os.environ.get("FORCE_SUB_CHANNEL4", "@nineanimeofchat")
+FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "@seishiro_atanime")
+FORCE_SUB_CHANNEL2 = os.environ.get("FORCE_SUB_CHANNEL2", "@seishiro_anime_is")
+FORCE_SUB_CHANNEL3 = os.environ.get("FORCE_SUB_CHANNEL3", "@seishiro_at_anime_engsub")
+FORCE_SUB_CHANNEL4 = os.environ.get("FORCE_SUB_CHANNEL4", "@seishiro_anime_is_hindidub")
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
@@ -39,7 +39,7 @@ FORCE_PIC = os.environ.get("FORCE_PIC", "https://www.desktophut.com/images/thumb
 START_MSG = os.environ.get("START_MESSAGE", "<b>ʙᴀᴋᴋᴀᴀᴀ!!! {first}</b>,\n\n <b>ɪ ᴀᴍ 9ᴀɴɪᴍᴇ ʙᴏᴛ, ɪ ᴀᴍ ᴀɴɪᴍᴇ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴀɴᴅ ɢᴇᴛ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴍᴇ ʙʏ ᴜsɪɴɢ sᴘᴇᴄɪᴀʟ ʟɪɴᴋ</b>")
 try:
     ADMINS=[6376328008]
-    for x in (os.environ.get("ADMINS", "6302971969 2077116559 1785065025 6844586745 6931518311 5983649308 6931518311").split()):
+    for x in (os.environ.get("ADMINS", "6701907262 8156773974 1136967391 6546791787").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
