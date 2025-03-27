@@ -1,77 +1,54 @@
-# Don't Remove Credit @BlakiteFF
-# Ask Doubt on telegram @Blakite_Ravii
-
-
 import os
-from os import environ,getenv
 import logging
 from logging.handlers import RotatingFileHandler
 
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7776271794:AAF90fUE1-Bd9dNv4JDdlNpk8B6i8XCJYFc")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7554602481:AAEeLQMpesEC6ViOzYr7k0MY6BS405pMR4Q")
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", "17417255"))
+APP_ID = int(os.environ.get("APP_ID", "22817133"))
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "73d424d9847f968130cd5b41946f7a5d")
+API_HASH = os.environ.get("API_HASH", "65b44989de9accc59c64691b308da0f7")
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002311297760"))
+CHANNEL_ID = os.environ.get("CHANNEL_ID", "@NineAnimeBackup")
 # NAMA OWNER
-OWNER = os.environ.get("OWNER", "Jas_Mehra")
+OWNER = os.environ.get("OWNER", "DARKXSIDE78")
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "6039119180"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "1136967391"))
 #Port
-PORT = os.environ.get("PORT", "8030")
+PORT = os.environ.get("PORT", "8000")
 #Database
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://Blakite_Ravii:Ravi8962@cluster0.vdv6h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-DB_NAME = os.environ.get("DATABASE_NAME", "Cluster0")
-
-#Time in seconds for message delete, put 0 to never delete
-TIME = int(os.environ.get("TIME", "600"))
-
+DB_NAME = os.environ.get("DATABASE_NAME", "AutoAnimeFileBot")
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL1 = int(os.environ.get("FORCE_SUB_CHANNEL1", "-1002687559165"))
-#put 0 to disable
-FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "-1002476495585"))#put 0 to disable
-FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "-1001395241746"))#put 0 to disable
-FORCE_SUB_CHANNEL4 = int(os.environ.get("FORCE_SUB_CHANNEL4", "0"))#put 0 to disable
+FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "@Nine_Anime_Official_Ongoing")
+FORCE_SUB_CHANNEL2 = os.environ.get("FORCE_SUB_CHANNEL2", "@DS_AnimeX")
+FORCE_SUB_CHANNEL3 = os.environ.get("FORCE_SUB_CHANNEL3", "@nineanimeofficial")
+#FORCE_SUB_CHANNEL4 = os.environ.get("FORCE_SUB_CHANNEL4", "@nineanimeofchat")
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
-START_PIC = os.environ.get("START_PIC", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8hSUEVj42wNqleYqT03R2rVQ6HyGz8xMx-Q&s")
-FORCE_PIC = os.environ.get("FORCE_PIC", "https://images6.alphacoders.com/136/thumb-1920-1366627.jpeg")
+FILE_AUTO_DELETE = int(os.getenv("FILE_AUTO_DELETE", "900")) # auto delete in seconds
 
-# Turn this feature on or off using True or False put value inside ""
-# TRUE for yes FALSE if no 
-TOKEN = False if os.environ.get('TOKEN', "False") == "True" else False 
-SHORTLINK_URL = ""  # Shortener feature turned off
-SHORTLINK_API = ""  # Shortener feature turned off
-VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 43200))  # Add time in seconds
-IS_VERIFY = os.environ.get("IS_VERIFY", "False")
-TUT_VID = os.environ.get("TUT_VID", "https://t.me/Jas_Mehra")
+START_PIC = os.environ.get("START_PIC", "https://wallpapers.com/images/featured/one-piece-desktop-idg4aqn5l0lh40dk.jpg")
+FORCE_PIC = os.environ.get("FORCE_PIC", "https://www.desktophut.com/images/thumb_1684136393_444810.jpg")
 
-
-HELP_TXT = "<b><blockquote>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ ᴡᴏʀᴋ ғᴏʀ @Jas_Mehra\n\n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/start : sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ\n├/about : ᴏᴜʀ Iɴғᴏʀᴍᴀᴛɪᴏɴ\n└/help : ʜᴇʟᴘ ʀᴇʟᴀᴛᴇᴅ ʙᴏᴛ\n\n sɪᴍᴘʟʏ ᴄʟɪᴄᴋ ᴏɴ ʟɪɴᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴊᴏɪɴ ʙᴏᴛʜ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ ᴛʜᴀᴛs ɪᴛ.....!\n\n ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ <a href=https://t.me/Jas_Mehra>Jas_Mehra</a></blockquote></b>"
-
-
-ABOUT_TXT = "<b><blockquote>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/Jas_Mehra>Jas_Mehra</a>\n◈ ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/Jas_Mehra>Jas_Mehra</a></blockquote></b>"
-
-
-START_MSG = os.environ.get("START_MESSAGE", "<b><blockquote>ʙᴀᴋᴋᴀᴀᴀ!! {first}\n\n ɪ ᴀᴍ ғɪʟᴇ sᴛᴏʀᴇ ʙᴏᴛ, ɪ ᴄᴀɴ sᴛᴏʀᴇ ᴘʀɪᴠᴀᴛᴇ ғɪʟᴇs ɪɴ sᴘᴇᴄɪғɪᴇᴅ ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴏᴛʜᴇʀ ᴜsᴇʀs ᴄᴀɴ ᴀᴄᴄᴇss ɪᴛ ғʀᴏᴍ sᴘᴇᴄɪᴀʟ ʟɪɴᴋ.</blockquote></b>")
+#start messages
+START_MSG = os.environ.get("START_MESSAGE", "<b>ʙᴀᴋᴋᴀᴀᴀ!!! {first}</b>,\n\n <b>ɪ ᴀᴍ 9ᴀɴɪᴍᴇ ʙᴏᴛ, ɪ ᴀᴍ ᴀɴɪᴍᴇ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴀɴᴅ ɢᴇᴛ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴍᴇ ʙʏ ᴜsɪɴɢ sᴘᴇᴄɪᴀʟ ʟɪɴᴋ</b>")
 try:
-    ADMINS=[6039119180]
-    for x in (os.environ.get("ADMINS", "1136967391 6039119180").split()):
+    ADMINS=[6376328008]
+    for x in (os.environ.get("ADMINS", "6302971969 2077116559 1785065025 6844586745 6931518311 5983649308 6931518311").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
 
 #Force sub message 
-FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "ʜᴇʟʟᴏ {first}\n\n<b>ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ʀᴇʟᴏᴀᴅ button ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛᴇᴅ ꜰɪʟᴇ.</b>")
+FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "<b><i>Please Join Following Channels to Use this Bot!</i></b>")
 
 #set your Custom Caption here, Keep None for Disable Custom Caption
-CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "<b>• ʙʏ @Jas_Mehra</b>")
+CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 
 #set True if you want to prevent users from forwarding files from bot
 PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
@@ -80,12 +57,12 @@ PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" e
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
-USER_REPLY_TEXT = "ʙᴀᴋᴋᴀ ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!"
+USER_REPLY_TEXT = "<b>ʙᴀᴋᴋᴀᴀᴀ! ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴍʏ ꜱᴇɴᴘᴀɪ!!!</b>"
 
 ADMINS.append(OWNER_ID)
-ADMINS.append(6039119180)
+ADMINS.append(6497757690)
 
-LOG_FILE_NAME = "filesharingbot.txt"
+LOG_FILE_NAME = "bot.txt"
 
 logging.basicConfig(
     level=logging.INFO,

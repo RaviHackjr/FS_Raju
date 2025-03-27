@@ -1,28 +1,20 @@
-#(©)CodeFlix_Bots
-#rohit_1888 on Tg #Dont remove this line
-
 import base64
 import re
 import asyncio
-import time
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import *
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
-from shortzy import Shortzy
-from database.database import *
 
-
-
-async def is_subscribed1(filter, client, update):
-    if not FORCE_SUB_CHANNEL1:
+async def is_subscribed(filter, client, update):
+    if not FORCE_SUB_CHANNEL:
         return True
     user_id = update.from_user.id
     if user_id in ADMINS:
         return True
     try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL1, user_id = user_id)
+        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL, user_id = user_id)
     except UserNotParticipant:
         return False
 
@@ -30,8 +22,8 @@ async def is_subscribed1(filter, client, update):
         return False
     else:
         return True
-
-async def is_subscribed2(filter, client, update):
+        
+async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNEL2:
         return True
     user_id = update.from_user.id
@@ -47,7 +39,7 @@ async def is_subscribed2(filter, client, update):
     else:
         return True
 
-async def is_subscribed3(filter, client, update):
+async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNEL3:
         return True
     user_id = update.from_user.id
@@ -62,24 +54,35 @@ async def is_subscribed3(filter, client, update):
         return False
     else:
         return True
-
-async def is_subscribed4(filter, client, update):
-    if not FORCE_SUB_CHANNEL4:
+        
+async def is_subscribed(filter, client, update):
+    if not FORCE_SUB_CHANNEL:
+        return True
+    if not FORCE_SUB_CHANNEL2:
+        return True
+    if not FORCE_SUB_CHANNEL3:
         return True
     user_id = update.from_user.id
     if user_id in ADMINS:
         return True
     try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL4, user_id = user_id)
+        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL, user_id = user_id)
     except UserNotParticipant:
         return False
-
-    if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
+    
+    try:
+        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL2, user_id = user_id)
+    except UserNotParticipant:
         return False
+        
+    try:
+        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL3, user_id = user_id)
+    except UserNotParticipant:
+        return False
+        
     else:
         return True
-
-
+        
 async def encode(string):
     string_bytes = string.encode("ascii")
     base64_bytes = base64.urlsafe_b64encode(string_bytes)
@@ -124,7 +127,7 @@ async def get_message_id(client, message):
     elif message.forward_sender_name:
         return 0
     elif message.text:
-        pattern = "https://t.me/(?:c/)?(.*)/(\d+)"
+        pattern = r"https://t.me/(?:c/)?(.*)/(\d+)"
         matches = re.match(pattern,message.text)
         if not matches:
             return 0
@@ -161,36 +164,6 @@ def get_readable_time(seconds: int) -> str:
     up_time += ":".join(time_list)
     return up_time
 
-async def get_verify_status(user_id):
-    verify = await db_verify_status(user_id)
-    return verify
 
-async def update_verify_status(user_id, verify_token="", is_verified=False, verified_time=0, link=""):
-    current = await db_verify_status(user_id)
-    current['verify_token'] = verify_token
-    current['is_verified'] = is_verified
-    current['verified_time'] = verified_time
-    current['link'] = link
-    await db_update_verify_status(user_id, current)
-
-
-async def get_shortlink(url, api, link):
-    shortzy = Shortzy(api_key=api, base_site=url)
-    link = await shortzy.convert(link)
-    return link
-
-def get_exp_time(seconds):
-    periods = [('days', 86400), ('hours', 3600), ('mins', 60), ('secs', 1)]
-    result = ''
-    for period_name, period_seconds in periods:
-        if seconds >= period_seconds:
-            period_value, seconds = divmod(seconds, period_seconds)
-            result += f'{int(period_value)} {period_name}'
-    return result
-
-
-subscribed1 = filters.create(is_subscribed1)
-subscribed2 = filters.create(is_subscribed2)
-subscribed3 = filters.create(is_subscribed3)
-subscribed4 = filters.create(is_subscribed4)
-
+subscribed = filters.create(is_subscribed)
+       
