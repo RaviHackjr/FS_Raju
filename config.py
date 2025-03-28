@@ -23,7 +23,7 @@ DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://seishiroatanime:Y3FQIzJbC
 DB_NAME = os.environ.get("DATABASE_NAME", "AutoAnimeFileBot")
 
 #force sub channel id, if you want enable force sub
-#FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "@seishiro_at_anime_engsub")
+FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "@seishiro_at_anime_engsub")
 #FORCE_SUB_CHANNEL2 = os.environ.get("FORCE_SUB_CHANNEL2", "@seishiro_anime_is_hindidub")
 #FORCE_SUB_CHANNEL3 = os.environ.get("FORCE_SUB_CHANNEL3", "@seishiro_at_anime_engsub")
 #FORCE_SUB_CHANNEL4 = os.environ.get("FORCE_SUB_CHANNEL4", "@seishiro_anime_is_hindidub")
