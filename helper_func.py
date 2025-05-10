@@ -9,75 +9,115 @@ from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import *
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
-from pyrogram.errors import FloodWait
 from shortzy import Shortzy
+from pyrogram.errors import FloodWait
 from database.database import *
 
 
 
-async def is_subscribed1(filter, client, update):
-    if not FORCE_SUB_CHANNEL1:
-        return True
-    user_id = update.from_user.id
-    if user_id in ADMINS:
-        return True
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
+
+#used for cheking if a user is admin ~Owner also treated as admin level
+async def check_admin(filter, client, update):
     try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL1, user_id = user_id)
-    except UserNotParticipant:
+        user_id = update.from_user.id       
+        return any([user_id == OWNER_ID, await db.admin_exist(user_id)])
+    except Exception as e:
+        print(f"! Exception in check_admin: {e}")
         return False
 
-    if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
-        return False
-    else:
+
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
+
+async def is_subscribed(client, user_id):
+    channel_ids = await db.show_channels()
+
+    if not channel_ids:
         return True
 
-async def is_subscribed2(filter, client, update):
-    if not FORCE_SUB_CHANNEL2:
+    if user_id == OWNER_ID:
         return True
-    user_id = update.from_user.id
-    if user_id in ADMINS:
-        return True
+
+    for cid in channel_ids:
+        if not await is_sub(client, user_id, cid):
+            # Retry once if join request might be processing
+            mode = await db.get_channel_mode(cid)
+            if mode == "on":
+                await asyncio.sleep(2)  # give time for @on_chat_join_request to process
+                if await is_sub(client, user_id, cid):
+                    continue
+            return False
+
+    return True
+
+
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
+
+async def is_sub(client, user_id, channel_id):
     try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL2, user_id = user_id)
+        member = await client.get_chat_member(channel_id, user_id)
+        status = member.status
+        #print(f"[SUB] User {user_id} in {channel_id} with status {status}")
+        return status in {
+            ChatMemberStatus.OWNER,
+            ChatMemberStatus.ADMINISTRATOR,
+            ChatMemberStatus.MEMBER
+        }
+
     except UserNotParticipant:
+        mode = await db.get_channel_mode(channel_id)
+        if mode == "on":
+            exists = await db.req_user_exist(channel_id, user_id)
+            #print(f"[REQ] User {user_id} join request for {channel_id}: {exists}")
+            return exists
+        #print(f"[NOT SUB] User {user_id} not in {channel_id} and mode != on")
         return False
 
-    if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
-        return False
-    else:
-        return True
-
-async def is_subscribed3(filter, client, update):
-    if not FORCE_SUB_CHANNEL3:
-        return True
-    user_id = update.from_user.id
-    if user_id in ADMINS:
-        return True
-    try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL3, user_id = user_id)
-    except UserNotParticipant:
+    except Exception as e:
+        print(f"[!] Error in is_sub(): {e}")
         return False
 
-    if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
-        return False
-    else:
-        return True
-
-async def is_subscribed4(filter, client, update):
-    if not FORCE_SUB_CHANNEL4:
-        return True
-    user_id = update.from_user.id
-    if user_id in ADMINS:
-        return True
-    try:
-        member = await client.get_chat_member(chat_id = FORCE_SUB_CHANNEL4, user_id = user_id)
-    except UserNotParticipant:
-        return False
-
-    if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
-        return False
-    else:
-        return True
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
 
 
 async def encode(string):
@@ -161,23 +201,6 @@ def get_readable_time(seconds: int) -> str:
     up_time += ":".join(time_list)
     return up_time
 
-async def get_verify_status(user_id):
-    verify = await db_verify_status(user_id)
-    return verify
-
-async def update_verify_status(user_id, verify_token="", is_verified=False, verified_time=0, link=""):
-    current = await db_verify_status(user_id)
-    current['verify_token'] = verify_token
-    current['is_verified'] = is_verified
-    current['verified_time'] = verified_time
-    current['link'] = link
-    await db_update_verify_status(user_id, current)
-
-
-async def get_shortlink(url, api, link):
-    shortzy = Shortzy(api_key=api, base_site=url)
-    link = await shortzy.convert(link)
-    return link
 
 def get_exp_time(seconds):
     periods = [('days', 86400), ('hours', 3600), ('mins', 60), ('secs', 1)]
@@ -188,9 +211,38 @@ def get_exp_time(seconds):
             result += f'{int(period_value)} {period_name}'
     return result
 
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
 
-subscribed1 = filters.create(is_subscribed1)
-subscribed2 = filters.create(is_subscribed2)
-subscribed3 = filters.create(is_subscribed3)
-subscribed4 = filters.create(is_subscribed4)
 
+async def get_shortlink(url, api, link):
+    shortzy = Shortzy(api_key=api, base_site=url)
+    link = await shortzy.convert(link)
+    return link
+
+
+subscribed = filters.create(is_subscribed)
+admin = filters.create(check_admin)
+
+#rohit_1888 on Tg :
+
+# Don't Remove Credit @CodeFlix_Bots, @rohit_1888
+# Ask Doubt on telegram @CodeflixSupport
+#
+# Copyright (C) 2025 by Codeflix-Bots@Github, < https://github.com/Codeflix-Bots >.
+#
+# This file is part of < https://github.com/Codeflix-Bots/FileStore > project,
+# and is released under the MIT License.
+# Please see < https://github.com/Codeflix-Bots/FileStore/blob/master/LICENSE >
+#
+# All rights reserved.
+#
